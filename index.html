@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simon says</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simon Says</title>
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-    <div>
-        <button id="play">Premi</button>
+    <div id="game-container">
+
+        <button id="start-button">Clicca per cominciare</button>
+
+        <div id="secretNumbers">
+
+        </div>
+
+        <hr>
+
+        <div id="inputElementsContainer" style="display: none">
+            
+            <input placeholder="Numero 1" type="number" id="number-1"><br>
+            <input placeholder="Numero 2" type="number" id="number-2"><br>
+            <input placeholder="Numero 3" type="number" id="number-3"><br>
+            <input placeholder="Numero 4" type="number" id="number-4"><br>
+            <input placeholder="Numero 5" type="number" id="number-5"><br>
+
+            <br>
+
+            <button id="check">Controlla quanti ne hai indovinati</button>
+
+        </div>
+
+        <hr>
+
+        <div id="outputText"></div>
+
     </div>
 
-    <div id="show-number">
-
-    </div>
-    
-    <div id="text">
-
-    </div>
-
-    
-    <div id="input-container">
-        <input type="number" id="input">
-        <button id="btn-result">Scopri il risultato</button>
-        <div id="text-result"></div>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

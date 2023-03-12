@@ -4,21 +4,46 @@
     box-sizing: border-box;
 }
 
-body {
-    padding: 20px;
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+    padding-top: 50px;
 }
 
-body #show-number {
-    height: 20px;
-    margin-top: 20px;
+#start-button {
+    background-color: aqua;
+    padding: 10px 5px;
     margin-bottom: 20px;
 }
 
-body #text {
-    height: 20px;
+#secretNumbers {
+    margin-bottom: 20px;
+    font-size: 1.5em;
 }
 
-body #input-container {
-    height: 20px;
-    margin-top: 30px;
+#inputElementsContainer {
+    text-align: center;
 }
+
+#inputElementsContainer input {
+    height: 2em;
+    width: 250px;
+    text-align: center;
+}
+
+#check {
+    background-color: aqua;
+    padding: 10px 5px;
+    margin-bottom: 20px;
+}
+
+#outputText {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+

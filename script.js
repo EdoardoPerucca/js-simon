@@ -14,93 +14,127 @@ numeri da indovinare sono stati individuati.
 - Dopo aver inserito i 5 numeri, indicare quanti e quali numeri sono stati indovinati
 */ 
 
-
-let playEl = document.getElementById('play');
-
-let textEl = document.getElementById('text');
-
-let showNumberEl = document.getElementById('show-number');
-
-let btnResultEl = document.getElementById('btn-result');
-
-let inputEL = document.getElementById('input');
-
-let textResultEl = document.getElementById('text-result');
+const startButtonEl = document.getElementById('start-button');
+const secretNumbersEl = document.getElementById("secretNumbers");
+const inputElementContainer = document.getElementById('inputElementsContainer');
+const outputTextEl = document.getElementById("outputText");
+const checkButton = document.getElementById("check");
+const randomNumbersArray = createRandomNumbers(5);
 
 
-playEl.addEventListener('click', function() {
+// creo array di input
+const numberEl = [
+  document.getElementById("number-1"),
+  document.getElementById("number-2"),
+  document.getElementById("number-3"),
+  document.getElementById("number-4"),
+  document.getElementById("number-5")
+];
 
 
-    // - Creare ciclo random con 5 numeri casuali.
+startButtonEl.addEventListener('click', function() {
+
     
-    // genero array di numeri
-    let arrRand = [];
-    // genero numeri random
-    while(arrRand.length < 5){
-        let random = Math.floor(Math.random() * 10) + 1;
-        if(arrRand.indexOf(random) === -1) arrRand.push(random);
+    // stampo in pagina
+    secretNumbersEl.innerText = randomNumbersArray;
+    
+    // parte il timer di 10 secondi.
+    // Dopo 10 secondi i numeri scompaiono 
+    setTimeout(function() {
+      
+      disappearNumbers(secretNumbersEl);
+    
+      inputElementContainer.style.display = "block";
+    
+    }, 3000);
+});
+
+
+
+
+// il software dice quanti e quali numeri sono stati indovinati.
+
+checkButton.addEventListener("click", function() {
+
+  let rightNumbersArray = checkNumbers(randomNumbersArray, numberEl);
+
+  endGame(rightNumbersArray, outputTextEl);
+
+});
+
+
+
+
+
+
+// ------------------ FUNCTIONS -----------------------
+
+
+
+function endGame(rightNumbers, outputEl) {
+
+  // stampa quanti numeri ha indovinato l'utente
+  outputEl.innerHTML = `
+  Hai indovinato ${rightNumbers.length} numeri.<br>
+  I numeri che hai indovinato sono: ${rightNumbers}`;
+
+}
+
+
+
+// Restituisce un array dei numeri che l'utente ha indovinato
+
+function checkNumbers(secretNumbers, userNumbers) {
+  
+  const rightNumbers = [];
+
+ 
+
+  for(let i = 0; i < userNumbers.length; i++) {
+
+    if(secretNumbers[i] == userNumbers[i].value) {
+      
+      rightNumbers.push(secretNumbers[i]);
+
+      userNumbers[i].style.backgroundColor = "green";
+
     }
-        showNumberEl.innerHTML = arrRand;
-
-
-        
-     
-        
-        // - Imposto timer di 10 sec
-        let secondLeft = 3;
-        
-        // imposto intervallo di tempo
-        let intervalTime = setInterval (count, 1000);
-        
-        console.log(intervalTime)
-        
-        
-        
-        
-        
-        // Dichiaro la funzione da chiamare dentro la timing function
-        function count() {
-            
-            textEl.innerHTML = secondLeft;
-            // controllo se sono passati i 10 secondi
-            if (secondLeft <= 0) {
-                
-                //stampo in pagina finito il tempo
-                textEl.innerHTML = 'Il tempo è finito, ricordi i numeri? Inseriscili qui sotto';
-                
-                clearInterval(intervalTime);
-              
-                
-            }
-
-            secondLeft--;
-
-            if (secondLeft < 0) {
-                showNumberEl.innerHTML = '';
-            }
-        }
-             
-
-});
-
-
-let numberCorrectEl = (arrRand = inputEL); 
-
-
-// - Dopo aver inserito i 5 numeri, indicare quanti e quali numeri sono stati indovinati
-
-btnResultEl.addEventListener('click', function() {
-
-    textResultEl.innerHTML = numberCorrectEl;
-});
     
+  }
+
+  return rightNumbers;
+
+}
+
+
+// funzione per far sparire i numeri random
+function disappearNumbers(numbersContainer) {
+  numbersContainer.innerText = "Ora tocca a te, ti ricordi i numeri?";
+}
+
+
+// crea numeri random
+function createRandomNumbers(quantity) {
+  let randomNumbers = [];
+
+  for(let i = 0; i < quantity; i++) {
+    randomNumbers.push(randomNumberBetween(1, 10));
+  }
+
+  return randomNumbers;
+
+}
 
 
 
+// restituisce un numero intero random dal min al max
+function randomNumberBetween(min, max) {
 
+  let random = Math.floor(Math.random() * (max - min + 1) + min)
 
+  return random;
 
-    
+}
 
 
 
